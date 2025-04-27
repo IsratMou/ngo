@@ -62,4 +62,7 @@ def login_view(request):
 
 
 def logout_view(request):
-    pass
+    logout(request)
+    messages.success(request, "You are logged out successfully!")
+    return redirect('home')
+
