@@ -1,1 +1,42 @@
 <h1>this is login page</h1>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>                         
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+</head>
+<body>
+    <h3>Signup</h3>
+    <form action="/login/" method="POST">
+       
+        {% csrf_token %}
+
+
+        <label for="">Username</label>
+        <input type="text" id="username" name="username" 
+        placeholder="Enter your Username" Required><br>
+
+       
+        <br>
+
+        <label for="">Password</label>
+        <input type="password" id="pass1" name="pass1" 
+        placeholder="Enter your Password" Required><br><br>
+
+        <br>
+
+      
+
+        <input type="submit" value="Login">
+        <br>
+    </form>
+    
+    <script src="" async defer></script>
+</body>
+</html>
+
+
+

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 
@@ -30,7 +31,8 @@ def signup(request):
         myuser.last_name = lname
         myuser.save()
 
-        messages.success(request, "Your account has been created successfully!")
+        messages.success(
+            request, "Your account has been created successfully!")
         return redirect('login')
 
     # If not POST method, render the signup page
@@ -38,6 +40,24 @@ def signup(request):
 
 
 def login_view(request):
+
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        pass1 = request.POST.get('pass1')
+
+        # Authenticate user
+        user = authenticate(request, username=username, password=pass1)
+        if user is not None:
+            login(request, user)
+            messages.success(request, "You are logged in successfully!")
+
+            fname = user.first_name
+
+            return redirect('home')
+        else:
+            messages.error(request, "Invalid credentials!")
+            return redirect('home')
+
     return render(request, 'login.html')
 
 
