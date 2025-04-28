@@ -107,30 +107,13 @@
             margin-bottom: 20px;
         }
         
-        .ice-cream {
-            position: absolute;
-            width: 60px;
-            opacity: 0.7;
-        }
-        
-        .ice-cream-1 {
-            top: -20px;
-            left: -20px;
-            transform: rotate(-15deg);
-        }
-        
-        .ice-cream-2 {
-            bottom: -20px;
-            right: -20px;
-            transform: rotate(15deg);
-        }
+       
     </style>
 </head>
 <body>
     <div class="container">
         <!-- Decorative ice cream icons -->
-        <div class="ice-cream ice-cream-1">🍦</div>
-        <div class="ice-cream ice-cream-2">🍦</div>
+       
         
         {% for message in messages %}
             <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
