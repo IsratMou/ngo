@@ -3,16 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Authentication</title>
+    <title>Welcome to Protisruti</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --color1: #FEF3FF; /* Light lavender */
+            --color2: #EDE1F8; /* Soft purple */
+            --color3: #D6C2EB; /* Medium lavender */
+            --color4: #F3CDE2; /* Pink lavender */
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--color1), var(--color2));
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #5a3d7a;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, var(--color4), var(--color3));
+        }
+        
+        h2 {
+            color: #7a5c9e;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        h3, h4 {
+            color: #5a3d7a;
+            margin: 15px 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--color3), var(--color4));
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            margin: 10px 5px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(214, 194, 235, 0.5);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(214, 194, 235, 0.7);
+        }
+        
+        .btn i {
+            margin-right: 8px;
+        }
+        
+        .alert {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            position: relative;
+            background-color: #f8f1ff;
+            border-left: 5px solid var(--color3);
+        }
+        
+        .close {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            cursor: pointer;
+            color: var(--color3);
+        }
+        
+        .welcome-icon {
+            font-size: 50px;
+            color: var(--color4);
+            margin-bottom: 20px;
+        }
+        
+       
+    </style>
 </head>
 <body>
-    <h3>Welcome to our homepage</h3>
-    <button type="submit" ><a href="/signup">Signup </a></button>
-    <button type="submit"><a href="/login">Login </a></button>
-    <button type="submit"><a href="/logout">Logout </a></button>
-   
-    <button type="submit">Logout</button>
-    
-    <script src="" async defer></script>
+    <div class="container">
+        <!-- Decorative ice cream icons -->
+       
+        
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                <strong>Message:</strong> {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+        
+        <div class="welcome-icon">🌸</div>
+        <h2>Welcome to Protisruti</h2>
+        
+        {% if user.is_authenticated %}
+            <h3>Hello, {{ user.first_name }}!</h3>
+            <h4>You're successfully logged in!</h4>
+            <button class="btn"><i class="fas fa-sign-out-alt"></i><a href="/logout" style="color: white; text-decoration: none;">Logout</a></button>
+        {% else %}
+            <button class="btn"><i class="fas fa-user-plus"></i><a href="/signup" style="color: white; text-decoration: none;">Signup</a></button>
+            <button class="btn"><i class="fas fa-sign-in-alt"></i><a href="/login" style="color: white; text-decoration: none;">Login</a></button>
+        {% endif %}
+    </div>
 </body>
 </html>
